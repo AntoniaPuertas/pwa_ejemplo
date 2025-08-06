@@ -1,5 +1,21 @@
 # PWA Ejemplo - Plantilla de Aplicación Web Progresiva
 
+## 🌐 ¿Qué es una PWA?
+
+Una **Progressive Web App (PWA)** es una aplicación web que utiliza tecnologías modernas para ofrecer una experiencia similar a una aplicación nativa móvil. Las PWAs combinan lo mejor de las aplicaciones web y móviles:
+
+- **📲 Instalables**: Se pueden instalar desde el navegador sin necesidad de tiendas de aplicaciones
+- **🔌 Funciona offline**: Continúan funcionando sin conexión a internet
+- **🚀 Rápidas**: Cargan instantáneamente gracias al sistema de cache
+- **🔄 Actualizables**: Se actualizan automáticamente sin intervención del usuario
+- **🔒 Seguras**: Requieren HTTPS para garantizar la seguridad
+- **📱 Responsivas**: Se adaptan a cualquier dispositivo (móvil, tablet, desktop)
+
+Las PWAs utilizan tres tecnologías principales:
+1. **Web App Manifest**: Define cómo debe aparecer la app (iconos, colores, nombre)
+2. **Service Workers**: Permiten el funcionamiento offline y las notificaciones push
+3. **HTTPS**: Garantiza que la comunicación sea segura
+
 ## 📱 Propósito del Proyecto
 
 Este proyecto sirve como **plantilla base** para crear una Progressive Web App (PWA) que puede ser instalada en dispositivos móviles como una aplicación nativa. Es un ejemplo funcional y minimalista que incluye todas las características esenciales de una PWA.

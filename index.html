@@ -1,14 +1,30 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Configuración básica del documento -->
     <meta charset="UTF-8" />
+    
+    <!-- Configuración de viewport para móviles -->
+    <!-- Evita zoom y hace la app más nativa -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    
+    <!-- Color del tema para la barra de estado del navegador -->
     <meta name="theme-color" content="#000000" />
+    
+    <!-- CONFIGURACIÓN PWA -->
+    <!-- Enlace al manifest que define la configuración de la PWA -->
     <link rel="manifest" href="manifest.json" />
+    
+    <!-- Configuración específica para iOS -->
     <link rel="apple-touch-icon" href="icons/icon-192x192.png" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
+    
+    <!-- Configuración para Android y otros navegadores -->
     <meta name="mobile-web-app-capable" content="yes" />
+    
     <title>Mi APP</title>
+    
+    <!-- Estilos CSS para la interfaz -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -24,33 +40,54 @@
     </style>
 </head>
 <body>
+    <!-- Contenido principal de la aplicación -->
     <h1>Bienvenido a Mi APP</h1>
     <p>Esta es una PWA de prueba.</p>
+    
+    <!-- Botón de instalación (se muestra solo cuando la PWA es instalable) -->
     <button id="installBtn" style="display: none;">Instalar App</button>
 
     <script>
-        // Registrar Service Worker
+        /**
+         * REGISTRO DEL SERVICE WORKER
+         * Verifica compatibilidad y registra el SW para funcionamiento offline
+         */
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/sw.js')
                 .then(() => console.log('Service Worker registrado'))
                 .catch(error => console.error('Error al registrar SW', error));
         }
 
-        // Lógica de instalación PWA
-        let deferredPrompt;
+        /**
+         * LÓGICA DE INSTALACIÓN PWA
+         * Maneja el prompt personalizado de instalación
+         */
+        let deferredPrompt;  // Variable para guardar el evento de instalación
         const installBtn = document.getElementById('installBtn');
 
+        // Escuchar evento que indica que la PWA puede instalarse
         window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevenir que aparezca el banner automático del navegador
             e.preventDefault();
+            
+            // Guardar el evento para usarlo después
             deferredPrompt = e;
+            
+            // Mostrar nuestro botón personalizado de instalación
             installBtn.style.display = 'block';
         });
 
+        // Manejar clic en el botón de instalación
         installBtn.addEventListener('click', async () => {
             if (deferredPrompt) {
+                // Mostrar el prompt nativo de instalación
                 deferredPrompt.prompt();
+                
+                // Esperar respuesta del usuario
                 const { outcome } = await deferredPrompt.userChoice;
                 console.log(`Resultado de instalación: ${outcome}`);
+                
+                // Limpiar referencias y ocultar botón
                 deferredPrompt = null;
                 installBtn.style.display = 'none';
             }
