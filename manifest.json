@@ -1,7 +1,7 @@
 {
-  "name": "The Movie",
-  "short_name": "Movies",
-  "description": "Consumo de API de películas",
+  "name": "Mi APP",
+  "short_name": "APP",
+  "description": "PWA Ejemplo",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
